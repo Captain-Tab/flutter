@@ -32,7 +32,7 @@ class MyLayout extends StatelessWidget {
     MyCarouselData(
       title: 'TWITTER',
       time: '04/07/2025',
-      onGoing: false,
+      onGoing: true,
     ),
    ];
 
