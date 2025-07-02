@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import '../carousel/my_carousel.dart';
 export 'my_layout.dart';
 
 class MyLayout extends StatelessWidget {
@@ -11,21 +11,25 @@ class MyLayout extends StatelessWidget {
       body: SafeArea(
         child: ListView(
           children: [
-              Container(
-                height: MediaQuery.of(context).size.height * 0.42,
-                child: Container(
-                  decoration: const BoxDecoration(
+              Stack(
+                children: [
+                  Container(
+                    width: double.infinity,
+                    height: MediaQuery.of(context).size.height * 0.42,
+                    decoration: const BoxDecoration(
                     color: Color(0xFF878E9F),
                     borderRadius: BorderRadius.only(
                       bottomLeft: Radius.circular(20),
                       bottomRight: Radius.circular(20),
                     ),
                   ),
-                )
+                  child: MyCarousel(),
+                  ),
+                ]
               ),
               SizedBox(height: 31),
               Container(
-                padding: EdgeInsets.only(left: 16),
+                // padding: EdgeInsets.only(left: 16),
                 height: MediaQuery.of(context).size.height * 0.07,
                 child: Align(
                   alignment: Alignment.centerLeft,
@@ -43,7 +47,7 @@ class MyLayout extends StatelessWidget {
                           ),
                         ),
                         Container(
-                          alignment: Alignment.centerLeft,
+                          alignment: Alignment.bottomLeft,
                           padding: EdgeInsets.all( MediaQuery.of(context).size.width * 0.04),
                           child: const Text('Hello World1',
                           style: TextStyle(
