@@ -1,9 +1,40 @@
 import 'package:flutter/material.dart';
 import '../carousel/my_carousel.dart';
+import '../card/my_card.dart';
 export 'my_layout.dart';
 
-class MyLayout extends StatelessWidget {
 
+class MyCardData {
+  final String title;
+  final bool onGoing;
+
+  MyCardData({required this.title, required this.onGoing});
+}
+
+
+class MyLayout extends StatelessWidget {
+   List<MyCarouselData> cardList = [
+    MyCarouselData(
+      title: 'APPLE',
+      time: '02/07/2025',
+      onGoing: true,
+    ),
+    MyCarouselData(
+      title: 'GOOGLE',
+      time: '01/07/2025',
+      onGoing: false,
+    ),
+     MyCarouselData(
+      title: 'META',
+      time: '03/07/2025',
+      onGoing: false,
+    ),
+    MyCarouselData(
+      title: 'TWITTER',
+      time: '04/07/2025',
+      onGoing: false,
+    ),
+   ];
 
   @override
   Widget build(BuildContext context) {
@@ -196,145 +227,14 @@ class MyLayout extends StatelessWidget {
               Center(
                 child: Container(
                   width: MediaQuery.of(context).size.width * 0.92,
+                  padding: const EdgeInsets.all(15),  // 外边距15px
                   child: GridView.count(
-                      shrinkWrap: true,          // 内容不足时也保持合适高度
+                      shrinkWrap: true,
                       crossAxisCount: 2,
-                      crossAxisSpacing: 20, // 水平间距
-                      mainAxisSpacing: 10,  // 垂直间距
-                      children: [
-                        Container(
-                          width: 170.91,
-                          height: 129,
-                          padding: const EdgeInsets.all(20),
-                          decoration: ShapeDecoration(
-                            color: const Color(0xFFCDD2DE),
-                            shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(17.08),
-                            ),
-                          ),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                children: [
-                                  Container(
-                                    width: 40,
-                                    height: 40,
-                                    decoration: ShapeDecoration(
-                                    color: const Color(0xFF99AFE4),
-                                    shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(32),
-                                  ),
-                                  ),),
-                                  Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start, // 水平方向左对齐
-
-                                    children: [
-                                      const Align(
-                                        alignment: Alignment.centerLeft,
-                                        child: Text('APPLE', style: TextStyle(
-                                          color: Colors.black,
-                                          fontSize: 16,
-                                          fontFamily: 'Roboto',
-                                          fontWeight: FontWeight.w400,
-                                        ),),
-                                      ),
-                                      Align(
-                                        alignment: Alignment.centerLeft,
-                                        child: Text('Company', style: TextStyle(
-                                          color: Colors.black.withValues(alpha: 0.50),
-                                          fontSize: 16,
-                                          fontFamily: 'Roboto',
-                                          fontWeight: FontWeight.w400,
-                                        ),),
-                                      )
-                                      ,
-                                      ],
-                                  ),
-
-                            ],
-                          ),
-                           Row(
-                            children: [
-                              Text('01/07/2025', style: TextStyle(
-                              color: Colors.black.withValues(alpha: 0.55),
-                              fontSize: 16,
-                              fontFamily: 'Roboto',
-                              fontWeight: FontWeight.w400,
-                              ),),
-                            ],
-                           ),
-                         ],
-                        ),
-                        ),
-                        Container(
-                          width: 170.91,
-                          height: 139,
-                          padding: const EdgeInsets.all(20),
-                          decoration: ShapeDecoration(
-                            color: const Color(0xFFCDD2DE),
-                            shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(17.08),
-                            ),
-                          ),
-                         child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                children: [
-                                  Container(
-                                    width: 40,
-                                    height: 40,
-                                    decoration: ShapeDecoration(
-                                    color: const Color(0xFF99AFE4),
-                                    shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(32),
-                                  ),
-                                  ),),
-                                  Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start, // 水平方向左对齐
-
-                                    children: [
-                                      const Align(
-                                        alignment: Alignment.centerLeft,
-                                        child: Text('APPLE', style: TextStyle(
-                                          color: Colors.black,
-                                          fontSize: 16,
-                                          fontFamily: 'Roboto',
-                                          fontWeight: FontWeight.w400,
-                                        ),),
-                                      ),
-                                      Align(
-                                        alignment: Alignment.centerLeft,
-                                        child: Text('Company', style: TextStyle(
-                                          color: Colors.black.withValues(alpha: 0.50),
-                                          fontSize: 16,
-                                          fontFamily: 'Roboto',
-                                          fontWeight: FontWeight.w400,
-                                        ),),
-                                      )
-                                      ,
-                                      ],
-                                  ),
-
-                            ],
-                          ),
-                           Row(
-                            children: [
-                              Text('01/07/2025', style: TextStyle(
-                              color: Colors.black.withValues(alpha: 0.55),
-                              fontSize: 16,
-                              fontFamily: 'Roboto',
-                              fontWeight: FontWeight.w400,
-                              ),),
-                            ],
-                           ),
-                         ],
-                        ),
-                        ),
-                      ],
+                      mainAxisSpacing: 15,      // 行间距15px
+                      crossAxisSpacing: 15,     // 列间距15px
+                      childAspectRatio: 1.25,   // 调整宽高比
+                      children: cardList.map((card) => MyCard(title: card.title, onGoing: card.onGoing, time: card.time)).toList(),
                     ),
                 ),
               ),
@@ -360,3 +260,14 @@ class MyLayout extends StatelessWidget {
 }
 }
 
+
+class MyCarouselData {
+  MyCarouselData({
+    required this.title,
+    required this.time,
+    required this.onGoing,
+  });
+  final String title;
+  final String time;
+  final bool onGoing;
+}
