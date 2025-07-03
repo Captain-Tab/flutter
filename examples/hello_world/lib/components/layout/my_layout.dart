@@ -241,21 +241,21 @@ class MyLayout extends StatelessWidget {
           ],
         ),
       ),
-         bottomNavigationBar: BottomNavigationBar(
-          items: const [
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              label: '首页',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.search),
-              label: '搜索',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.person),
-              label: '我的',
-            ),
-          ]),
+      bottomNavigationBar: BottomNavigationBar(
+      items: const [
+        BottomNavigationBarItem(
+          icon: Icon(Icons.home),
+          label: '首页',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.search),
+          label: '搜索',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.person),
+          label: '我的',
+        ),
+      ]),
     );
 }
 }
